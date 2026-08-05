@@ -1,1 +1,24 @@
-<p>todo works!</p>
+<div class="todo-container">
+  <h2>To-Do List</h2>
+
+  <div class="input-group">
+    <input 
+      type="text" 
+      [(ngModel)]="task" 
+      placeholder="Enter a task..." 
+      (keyup.enter)="AddTask()"
+    />
+    <button (click)="AddTask()">Add Task</button>
+  </div>
+
+  <ul class="task-list">
+    @for (t of tasks; track $index) {
+      <li>
+        <span>{{ t }}</span>
+        <button class="delete-btn" (click)="DeleteTask($index)">Delete</button>
+      </li>
+    } @empty {
+      <p class="empty-msg">No tasks available. Add one above!</p>
+    }
+  </ul>
+</div>
